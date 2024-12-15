@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room - Semper Boys 2027</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Semper Boys 2027</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chat.html" class="active">Chat Room</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <div class="chat-container animate__animated animate__fadeIn">
+        <div class="chat-header">
+            <h2>Live Chat Room</h2>
+            <p class="chat-notice">Please login to participate in the chat</p>
+        </div>
+        <div class="chat-messages">
+            <div class="message">
+                <span class="username">John:</span>
+                <span class="message-content">Hello everyone!</span>
+                <span class="message-time">2:30 PM</span>
+            </div>
+            <div class="message">
+                <span class="username">Sarah:</span>
+                <span class="message-content">Hi John, welcome!</span>
+                <span class="message-time">2:31 PM</span>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Please login to chat..." disabled>
+            <button class="btn" disabled>Send</button>
+        </div>
+    </div>
+</body>
+</html>

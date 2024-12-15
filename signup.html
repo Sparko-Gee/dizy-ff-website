@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Semper Boys 2027</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Semper Boys 2027</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chat.html">Chat Room</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="active">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-container animate__animated animate__fadeIn">
+        <form class="signup-form">
+            <h2>Sign Up</h2>
+            <div class="message-box"></div>
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn" data-text="Sign Up">Sign Up</button>
+            <p class="form-footer">Already have an account? <a href="login.html">Login</a></p>
+        </form>
+    </div>
+
+    <script type="module">
+        import { handleSignup } from './js/auth.js';
+
+        const form = document.querySelector('.signup-form');
+        const messageBox = document.querySelector('.message-box');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Loading...';
+            messageBox.className = 'message-box';
+            
+            const username = form.username.value;
+            const email = form.email.value;
+            const password = form.password.value;
+            const confirmPassword = form.confirm_password.value;
+
+            if (password !== confirmPassword) {
+                messageBox.textContent = 'Passwords do not match';
+                messageBox.classList.add('error');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Sign Up';
+                return;
+            }
+
+            const result = await handleSignup(email, password, username);
+
+            if (result.success) {
+                messageBox.textContent = 'Sign up successful! Please check your email to confirm your account.';
+                messageBox.classList.add('success');
+                form.reset();
+            } else {
+                messageBox.textContent = result.error;
+                messageBox.classList.add('error');
+            }
+            
+            submitButton.disabled = false;
+            submitButton.textContent = 'Sign Up';
+        });
+    </script>
+</body>
+</html>

@@ -1,13 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semper Boys 2027</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">Semper Boys 2027</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="chat.html">Chat Room</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <main class="hero animate__animated animate__fadeInUp">
+        <h1>Welcome to Semper Boys 2027</h1>
+        <p>Join our community and connect with fellow members</p>
+        <div class="cta-buttons">
+            <a href="login.html" class="btn">Login</a>
+            <a href="signup.html" class="btn btn-secondary">Sign Up</a>
+        </div>
+    </main>
+
+    <script type="module">
+        import { updateAuthUI } from './js/auth-check.js';
+        updateAuthUI();
+    </script>
+</body>
 </html>

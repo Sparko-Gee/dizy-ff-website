@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Semper Boys 2027</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Semper Boys 2027</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chat.html">Chat Room</a></li>
+            <li><a href="login.html" class="active">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-container animate__animated animate__fadeIn">
+        <form class="login-form">
+            <h2>Login</h2>
+            <div class="message-box"></div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn" data-text="Login">Login</button>
+            <p class="form-footer">Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </form>
+    </div>
+
+    <script type="module">
+        import { handleLogin } from './js/auth.js';
+
+        const form = document.querySelector('.login-form');
+        const messageBox = document.querySelector('.message-box');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Loading...';
+            messageBox.className = 'message-box';
+            
+            const email = form.email.value;
+            const password = form.password.value;
+
+            const result = await handleLogin(email, password);
+
+            if (result.success) {
+                messageBox.textContent = 'Login successful!';
+                messageBox.classList.add('success');
+                // Redirect to home page after successful login
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                messageBox.textContent = result.error;
+                messageBox.classList.add('error');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Login';
+            }
+        });
+    </script>
+</body>
+</html>
